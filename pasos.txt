@@ -1,0 +1,20 @@
+npm init -y
+
+instalar express
+    npm install express
+
+crear index.js
+
+instalar nodemon
+    npm install nodemon
+
+instalar mongoose
+    npm i mongoose
+
+crear database/config.js
+
+instalar variables de entrono
+    npm i dotenv
+
+instalar cors
+    npm i cors
