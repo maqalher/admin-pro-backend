@@ -18,3 +18,19 @@ instalar variables de entrono
 
 instalar cors
     npm i cors
+
+
+Crear models/usuario.js
+
+Crear routes/usuario.js
+
+Crear controllers/usuario.js
+
+
+instalar express-validator
+ npm i express-validator
+
+crear middlewares/validar-campos.js
+
+instalar bcryptjs
+ npm i bcryptjs
