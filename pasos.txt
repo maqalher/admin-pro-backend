@@ -34,3 +34,14 @@ crear middlewares/validar-campos.js
 
 instalar bcryptjs
  npm i bcryptjs
+
+crear routes/auth.js
+
+crear controllers/auth.js
+
+crear helpers/jwt.js
+
+instalar jsonwebtoken
+    npm i jsonwebtoken
+
+crear middlewares/validar-jwt.js
