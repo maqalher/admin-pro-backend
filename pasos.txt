@@ -45,3 +45,43 @@ instalar jsonwebtoken
     npm i jsonwebtoken
 
 crear middlewares/validar-jwt.js
+
+crear models/hospital.js
+
+crear routes/hospitales.js
+
+    agregar la ruta en el index
+        app.use('/api/hospitales', require('./routes/hospitales'));
+
+crear controllers/hospitales
+
+crear models/medico.js
+
+crear routes/medicos.js
+
+    agregar la ruta en el index
+        app.use('/api/medicos', require('./routes/medicos'));
+
+crear controllers/medicos.js
+
+crear routes/busquedas.js
+    app.use('/api/todo/', require('./routes/busquedas'));
+crear controllers/busquedas.js
+
+crear routes/uploads.js
+    app.use('/api/upload', require('./routes/uploads'));
+crear controllers/uploads.js
+
+
+crear carpeta uploads
+    -hospitales
+    -medicos
+    -usuarios
+
+instalar express-fileupload
+    npm i express-fileupload
+
+instalar uuid
+    npm i uuid
+
+crear helpers/actualizar-imagen.js
