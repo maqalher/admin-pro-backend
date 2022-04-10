@@ -85,3 +85,14 @@ instalar uuid
     npm i uuid
 
 crear helpers/actualizar-imagen.js
+
+generar aplicacion de google para el auth   
+    copiar credenciales en el .env
+
+
+crear en raiz public/index.html
+
+
+instalar npm install google-auth-library --save
+
+crear helpers/google-verify.js
