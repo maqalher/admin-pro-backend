@@ -7,14 +7,14 @@ const { googleVerify } = require("../helpers/google-verify");
 
 const login = async (req, res = response) => {
 
-    const {email, password} = req.body;
+    const { email, password } = req.body;
 
     try {
 
         // Verificar email
-        const usuarioDB = await Usuario.findOne({email})
+        const usuarioDB = await Usuario.findOne({ email })
 
-        if(!usuarioDB){
+        if (!usuarioDB) {
             return res.status(404).json({
                 ok: false,
                 msg: 'email no encontrado'
@@ -23,10 +23,10 @@ const login = async (req, res = response) => {
 
         // verificar contrseña
         const validPassword = bcrypt.compareSync(password, usuarioDB.password);
-        if(!validPassword){
+        if (!validPassword) {
             return res.status(400).json({
-                ok:false,
-                msg: 'contrseña no valida'
+                ok: false,
+                msg: 'contraseña no valida'
             });
         }
 
@@ -34,14 +34,14 @@ const login = async (req, res = response) => {
         const token = await generarJWT(usuarioDB.id)
 
         res.json({
-            ok:true,
+            ok: true,
             token
         })
-        
+
     } catch (error) {
         console.log(error)
         res.status(500).json({
-            ok:false,
+            ok: false,
             msg: 'Hable con el administrador'
         })
     }
@@ -53,12 +53,12 @@ const googleSingIn = async (req, res = response) => {
 
     try {
 
-        const {name,email,picture} = await googleVerify(googleToken);
+        const { name, email, picture } = await googleVerify(googleToken);
 
-        const usuarioDB = await Usuario.findOne({email});
+        const usuarioDB = await Usuario.findOne({ email });
         let usuario;
 
-        if(!usuarioDB){
+        if (!usuarioDB) {
             // si no existe el usuario
             usuario = new Usuario({
                 nombre: name,
@@ -66,37 +66,34 @@ const googleSingIn = async (req, res = response) => {
                 password: '@@@',
                 img: picture,
                 google: true
-            })
-        }else {
+            });
+        } else {
             // existe usuario
             usuario = usuarioDB;
             usuario.google = true;
-            // usuario.password = '@@@';
         }
 
         // Guardar en DB
         await usuario.save();
 
-        // Generar token
-        const token = await generarJWT(usuario.id)
+        // Generar el TOKEN - JWT
+        const token = await generarJWT(usuario.id);
 
         res.json({
-            ok:true,
-            msg:'google singin',
-            // name,email,picture
+            ok: true,
             token
-        })
+        });
 
     } catch (error) {
-        res.status(401).json({
-            ok:false,
-            msg:'Token no es correcto'
-        })
-    }
 
+        res.status(401).json({
+            ok: false,
+            msg: 'Token no es correcto',
+        });
+    }
 }
 
-const renewToken = async(req, res = response) => {
+const renewToken = async (req, res = response) => {
 
     const uid = req.uid;
 
@@ -104,7 +101,7 @@ const renewToken = async(req, res = response) => {
     const token = await generarJWT(uid);
 
     res.json({
-        ok:true,
+        ok: true,
         token
     })
 

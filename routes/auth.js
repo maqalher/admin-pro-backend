@@ -15,12 +15,18 @@ router.post('/', [
     validarCampos
 ], login);
 
-router.post('/google', [
-    check('token', 'El token de google es obligtorio').not().isEmpty(),
+router.post( '/google',
+    [
+        check('token', 'El token de Google es obligatorio').not().isEmpty(),
+        validarCampos
+    ],
     googleSingIn
-], login);
+)
 
-router.get('/renew', validarJWT , renewToken);
+router.get( '/renew',
+    validarJWT,
+    renewToken
+)
 
 
 
